@@ -13,6 +13,9 @@ X, Y = np.meshgrid(x, y)
 
 fig = plt.figure(figsize=(1280/dpi, 720/dpi), dpi=dpi, facecolor='black')
 ax = fig.add_axes([0, 0, 1, 1], facecolor='black')
+ax.set_xlim(x[0], x[-1])
+ax.set_ylim(y[0], y[-1])
+ax.set_axis_off()
 
 def generate(frame):
     t = frame * 0.02
@@ -33,8 +36,8 @@ def generate(frame):
     return z
 
 def update(frame):
-    ax.clear()
-    ax.set_facecolor('black')
+    for collection in ax.collections:
+        collection.remove()
 
     Z = generate(frame)
 
@@ -42,19 +45,18 @@ def update(frame):
         X, Y, Z,
         levels=12,
         colors='white',
-        linewidths=2.5,
+        linewidths=1.5,
         linestyles='solid',
         antialiased=True
     )
 
-    ax.set_axis_off()
     return []
 
 ani = FuncAnimation(
     fig,
     update,
     frames=None,
-    interval=16,
+    interval=33,
     blit=False,
     cache_frame_data=False
 )
