@@ -1,10 +1,10 @@
+import matplotlib
+matplotlib.use('TkAgg')
+
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.animation import FuncAnimation
-import matplotlib
 from screeninfo import get_monitors
-
-matplotlib.use('TkAgg')
 
 def get_screen_resolution():
     try:
@@ -71,8 +71,6 @@ if hasattr(mng, 'window'):
     mng.window.overrideredirect(True) 
     mng.window.geometry(f"{SCREEN_WIDTH}x{SCREEN_HEIGHT}+0+0") 
 elif hasattr(mng, 'frame'):
-    
-    mng.frame.setWindowFlags(matplotlib.backends.qt_compat.QtCore.Qt.FramelessWindowHint)
     mng.full_screen_toggle()
 
 print(f"Berjalan dalam mode Borderless Fullscreen ({SCREEN_WIDTH}x{SCREEN_HEIGHT}).")
